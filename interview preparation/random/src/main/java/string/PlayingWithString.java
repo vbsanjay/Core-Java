@@ -1,9 +1,5 @@
 package string;
 
-private class hello{
-
-}
-
 public class PlayingWithString {
     public static void main(String[] args) {
         String name = "Sanjay";
