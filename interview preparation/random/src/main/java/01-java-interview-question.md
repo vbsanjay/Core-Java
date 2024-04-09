@@ -57,7 +57,7 @@ String str = new String("ABC");
 - **Performance:** StringBuilder is faster than StringBuffer due to lack of synchronization, but StringBuffer is safer in multi-threaded environments.
 - **Usage:** Use String when content is static, StringBuffer when thread safety is required, and StringBuilder when performance is a priority in single-threaded scenarios.
 
-![img.png](img.png)
+![img.png](img/img.png)
 
 ---
 
@@ -156,13 +156,13 @@ Certainly! Here's an explanation of `System.out.println();`:
 
 # Difference between Interface and Absract Class
 
-![img interface vs abstract.png](img interface vs abstract.png)
+![img interface vs abstract.png](img/img interface vs abstract.png)
 
 ---
 
 # Explain about public static void main(String[] args);
 
-![img2.png](img2.png)
+![img2.png](img/img2.png)
 
 The above syntax is very strict if we perform any change we will get runtime exception saying NoSuchMethodError:main. However, below changes are accepted:
 
