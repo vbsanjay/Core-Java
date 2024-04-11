@@ -618,21 +618,41 @@ The life cycle of a thread in Java can be described in several stages:
 
 ---
 
-- **String**:
-    - Immutable: Once created, cannot be modified.
-    - Thread-safe: Multiple threads can safely access and read strings without synchronization.
-    - Memory efficient: String literals are stored in the string pool, reducing memory overhead.
-    - String concatenation with '+' creates a new string object.
+# How to pause a Thread execution?
 
-- **StringBuffer**:
-    - Mutable: Contents can be modified after creation.
-    - Not thread-safe: StringBuffer is synchronized, so only one thread can access it at a time, which can lead to performance overhead in multithreaded environments.
-    - Slower than StringBuilder due to synchronization.
-    - Suitable for use in single-threaded applications or when thread safety is required.
+- We can pause a thread execution by using the following methods:
+  - yield()
+  - join()
+  - sleep()
 
-- **StringBuilder**:
-    - Mutable: Contents can be modified after creation.
-    - Not thread-safe: Like StringBuffer, StringBuilder is not inherently thread-safe, but it provides better performance in single-threaded environments.
-    - Faster than StringBuffer due to lack of synchronization.
-    - Suitable for use in single-threaded applications or when thread safety is not required.
+## yield():
+- The `yield()` method is a static method of the `Thread` class.
+- It is used to pause the execution of the current thread and allow other threads of the same priority to execute.
+- If there is no waiting thread or all waiting low priority then same thread can continue its execution.
+- If multiple threads are waiting with same priority then which waiting thread will get the chance we can't except, it depends on thread scheduler.
+- It is a hint to the scheduler that the current thread is willing to give up its current use of the processor.
+- ![img_11.png](img/img_11.png)
+- Example:
+  ```java
+  Thread.yield();
+  ```
+> Note: Some platform does not proper support for yeild method.
 
+## join():
+- The `join()` method is an instance method of the `Thread` class.
+- It is used to wait for a thread to finish its execution before continuing with the execution of the current thread.
+- It causes the current thread to wait until the thread on which it is called terminates or the specified waiting time elapses.
+- Example:
+  ```java
+  Thread thread = new Thread();
+  thread.join();
+  ```
+
+# sleep()
+- The `sleep()` method is a static method of the `Thread` class.
+- It is used to pause the execution of the current thread for a specified amount of time.
+- It causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
+- Example:
+  ```java
+  Thread.sleep(1000); // Sleep for 1 second
+  ```
