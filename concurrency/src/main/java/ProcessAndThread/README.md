@@ -642,13 +642,15 @@ The life cycle of a thread in Java can be described in several stages:
 - The `join()` method is an instance method of the `Thread` class.
 - It is used to wait for a thread to finish its execution before continuing with the execution of the current thread.
 - It causes the current thread to wait until the thread on which it is called terminates or the specified waiting time elapses.
+- Every `join()` method throws Interrupted Exception which is checked Exception, hence it is compulsory to handle ths exception either by using try catch or Throws keyword otherwise we will get compile time error.
+- ![img_12.png](img/img_12.png)
 - Example:
   ```java
   Thread thread = new Thread();
   thread.join();
   ```
 
-# sleep()
+## sleep()
 - The `sleep()` method is a static method of the `Thread` class.
 - It is used to pause the execution of the current thread for a specified amount of time.
 - It causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds.
@@ -656,3 +658,21 @@ The life cycle of a thread in Java can be described in several stages:
   ```java
   Thread.sleep(1000); // Sleep for 1 second
   ```
+## Why does Thread.sleep(1000, 1000000); throw a java.lang.IllegalArgumentException?
+
+This statement throws an IllegalArgumentException because the nanosecond value provided (1000000 nanoseconds) is out of range. The maximum value for nanoseconds should be less than 1000000 since it represents 1 millisecond. To correct this, the nanosecond value should be specified in milliseconds, such as Thread.sleep(1001, 1000000);.
+
+## Comparison of yield(), join(), sleep() Methods
+
+| Property                     | yield()                                                                                                   | join()                                                               | sleep()                                                         |
+|------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------|
+| Purpose                      | Gives a hint to the scheduler that the current thread is willing to yield its current use of a processor. | Waits for the thread to die.                                         | Puts the current thread to sleep for a specified duration.      |
+| Is it Overloaded?            | No                                                                                                        | Yes                                                                  | Yes                                                             |
+| Is it Final?                 | No                                                                                                        | Yes                                                                  | No                                                              |
+| Throws InterruptedException? | No                                                                                                        | Yes                                                                  | Yes                                                             |
+| Is it Native?                | Yes                                                                                                       | No                                                                   | sleep(long ms)->native<br/>sleep (long ms, int ns)-> non native |
+| Effect on Thread State       | May or may not relinquish the CPU depending on the thread scheduler.                                      | Waits until the specified thread terminates.                         | Pauses the execution of the current thread for a period.        |
+| Usefulness                   | Useful in situations where threads have equal priority and want to share CPU resources fairly.            | Useful when one thread needs to wait for another thread to complete. | Useful for introducing delays or timeouts in threads.           |
+| Potential of Deadlock?       | No                                                                                                        | Yes                                                                  | No                                                              |
+| Is it Static?                | Yes                                                                                                       | No                                                                   | Yes                                                             |
+
