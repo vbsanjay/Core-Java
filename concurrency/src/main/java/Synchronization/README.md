@@ -97,3 +97,27 @@ public static void main(String[] args) {
 - Reference: https://www.geeksforgeeks.org/class-level-lock-in-java/
 
 ![threadAndLockInStaticMethod.png](img/threadAndLockInStaticMethod.png)
+
+# Synchronized block
+
+## What is Synchronized block?
+- A synchronized block in Java is a critical section of code where access to shared resources is controlled to prevent concurrent modification issues.
+- By marking a block of code as synchronized, you ensure that only one thread can execute that block at a time, providing thread safety and avoiding race conditions.
+
+## When to use Synchronized block?
+- When very few lines of code need to be synchronized within a method then it is not recommended to declare entire method as synchronized.
+- We have to enclose those few lines of the code by using synchronized block.
+- The main advantage of synchronized block over synchronized method is it reduces waiting time of threads and improves performance of the system.
+
+## Points to remember
+- Synchronized block is used to lock an object for any shared resource.
+- Scope of synchronized block is smaller than the method.
+- Scope of synchronized block is smaller than the method.
+
+## Syntax
+``` java
+synchronized (object reference expression) {     
+//code block     
+}   
+``` 
+
