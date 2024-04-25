@@ -120,4 +120,26 @@ synchronized (object reference expression) {
 //code block     
 }   
 ``` 
+![declaringSyncBlock.png](img/declaringSyncBlock.png)
 
+> Locks in Java are associated with objects, not primitive types. When you use a synchronized block, you need to specify an object that acts as the lock. If you try to use a primitive type (like int, char, boolean, etc.) as the lock for a synchronized block, you will get a compile-time error indicating that a reference type is required.
+## Can thread acquire multiple lock?
+Yes, a thread can acquire multiple lock simultaneously from different object.
+### Example
+``` java
+class X{
+  public synchronized void m1(){
+    //here thread has lock of X Object
+    Y y = new Y();
+    synchronized(y){
+      //here thread has lock of X Object and Y Object
+      Z z = new Z();
+      synchronized(z){
+        //here thread has lock of X Object, Y Object and Z Object
+      }
+    }
+  }
+} 
+```
+## What is synchronized statement? (not official java terminology, but interviewer terminology)
+ The statements present in synchronized method or synchronized block are called synchronized statements.
